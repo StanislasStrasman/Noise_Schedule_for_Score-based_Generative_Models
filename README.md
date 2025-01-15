@@ -1,4 +1,4 @@
-# Noise Sched
+# Noise_Schedule_for_Score-based_Generative_Models
 
 This is the official code repository for the paper  
 [**An Analysis of the Noise Schedule for Score-Based Generative Models**](https://arxiv.org/abs/2402.04650)  

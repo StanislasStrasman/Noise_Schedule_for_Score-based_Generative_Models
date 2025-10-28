@@ -2,11 +2,15 @@ import torch
 import math
 import tqdm
 import numpy as np
-import functions as func
 from torch.optim import Adam
-from decoder import Decoder
-from upperbounds import gaussian
 from tqdm import tqdm, trange
+
+#import functions as func
+#from upperbounds import gaussian
+from . import functions as func
+from .upperbounds import gaussian
+from .decoder import Decoder
+
 
 #######################
 ### Diffusion processes

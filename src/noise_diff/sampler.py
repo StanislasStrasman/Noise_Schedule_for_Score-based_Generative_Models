@@ -1,6 +1,6 @@
 import torch
 import math
-import diffusion as diff
+from . import diffusion as diff
 
 #######################################
 ### DISCRETIZATION OF THE BACKWARD SDE 

@@ -3,8 +3,12 @@ import torch
 from scipy.stats import multivariate_normal
 from scipy.special import logsumexp
 
+#these classes represent the "complex synthetic data" described precisely in Appendix E.2.3.
+
 class MG25:
     def __init__(self, d):
+        if d < 2:
+            raise ValueError("MG25 requires d >= 2 (grid is defined on the first two coords).")
         self.d = d
         self.cov_matrix = self.make_cov_matrix()
         self.means = self.make_means()

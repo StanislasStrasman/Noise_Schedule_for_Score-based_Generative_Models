@@ -2,8 +2,10 @@ import numpy as np
 import torch
 import math
 import scipy
-import functions as func
 from scipy.spatial import KDTree
+
+from . import functions as func
+
 
 #########################
 ### GAUSSIAN DISTRIBUTION 

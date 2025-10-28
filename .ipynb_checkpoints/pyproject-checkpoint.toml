@@ -1,0 +1,9 @@
+[project]
+name = "noise_diff"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = ["torch", "numpy", "matplotlib", "tqdm", "scipy"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,19 @@
+# macOS system files
+.DS_Store
+
+# Python cache
+__pycache__/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Experiment / output folders
+results/
+outputs/
+figures/
+
+# Model or data artifacts
+*.pkl
+*.pt
+*.npy
+*.npz

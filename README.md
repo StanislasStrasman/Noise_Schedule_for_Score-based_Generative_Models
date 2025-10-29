@@ -25,7 +25,7 @@ cd Noise_Schedule_for_Score-based_Generative_Models
 pip install -r requirements.txt
 pip install -e .
 ```
-An illustrated example is given in `examples/illustrated_example.ipynb`. It provides a complete walkthrough of the setup, training and analysis of synthetic data examples. All scripts rely on the noise_diff package defined in src/. You can open it locally or directly [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/StanislasStrasman/Noise_Schedule_for_Score-based_Generative_Models/blob/main/examples/illustrated_example.ipynb)
+An illustrated example is given in `examples/illustrated_example.ipynb`. It provides a complete walkthrough of the setup, training and analysis of synthetic data examples. All scripts rely on the noise_diff package defined in src/. You can open it locally or directly in Colab. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/StanislasStrasman/Noise_Schedule_for_Score-based_Generative_Models/blob/main/examples/illustrated_example.ipynb)
 
 A version of this repository including the **example on a real dataset** using **pre-trained diffusion models** from  
 ```bibtex
@@ -55,7 +55,7 @@ will be added **soon**.
 ## Documentation
 
 A short module-level overview and description is provided in `short_documentation.ipynb` for easy navigation. For further theoretical context and mathematical derivations, please refer to
-  **Appendix E**](https://arxiv.org/abs/2402.04650) of the paper.
+  [**Appendix E**](https://arxiv.org/abs/2402.04650) of the paper.
 
 
 ## If you use this code please cite 

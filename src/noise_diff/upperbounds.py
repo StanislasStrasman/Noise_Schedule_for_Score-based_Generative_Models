@@ -174,7 +174,7 @@ def compute_w2_bound(dataset, training_sample, sde, num_steps, epsilon, gauss = 
         #mixing
         mixing =  compute_mixing_w2(dataset,sde)
         t_points = torch.linspace(0, sde.final_time, steps=100, device = sde.device)
-        ct_values = torch.tensor([compute_Ct(dataset, sde, t) * sde.beta(t) for t in t_points])
+        ct_values = torch.stack([compute_Ct(dataset, sde, t) * sde.beta(t) for t in t_points])
         integral_approximation_Ct = torch.trapezoid(ct_values, t_points)
         mixing *= torch.exp(- integral_approximation_Ct)
 
@@ -186,7 +186,7 @@ def compute_w2_bound(dataset, training_sample, sde, num_steps, epsilon, gauss = 
             rev_tk = sde.final_time - times[i]  #T-tk
             rev_tkp1 = sde.final_time - times[i+1]  #T-tkp1
             t_points = torch.linspace(rev_tkp1, rev_tk, steps=100, device = sde.device)
-            Lt_beta_values = torch.tensor([compute_Lt(dataset, sde, t) * sde.beta(t) for t in t_points])
+            Lt_beta_values = torch.stack([compute_Lt(dataset, sde, t) * sde.beta(t) for t in t_points])
             integral_approximation_Lt_beta = torch.trapezoid(Lt_beta_values, t_points)
             aprox_discr += integral_approximation_Lt_beta * (M_2 + 2*integral_approximation_Lt_beta)*B
 

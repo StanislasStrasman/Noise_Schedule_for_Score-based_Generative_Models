@@ -4,7 +4,7 @@
 
 Official code repository for the paper:  [**An Analysis of the Noise Schedule for Score-Based Generative Models**](https://arxiv.org/abs/2402.04650)  published in *Transactions on Machine Learning Research (TMLR)*.
 
-This repository contains the code to experiments and figures from the paper, as well as modular implementations of diffusion processes and noise schedules for Score-based Generative Models.
+This repository contains the code to experiments and figures from the paper, as well as modular implementations of diffusion processes, noise schedules and theoretical bound approximations for Score-based Generative Models.
 
 </div>
 
@@ -15,7 +15,7 @@ This repository contains the code to experiments and figures from the paper, as 
 - `requirements.txt` – Dependencies required to reproduce results.  
 - `pyproject.toml` – Package metadata for editable installation.
 
-## Installation
+## Installation & Reproducing results
 
 Clone the repository and install dependencies:
 
@@ -25,24 +25,7 @@ cd Noise_Schedule_for_Score-based_Generative_Models
 pip install -r requirements.txt
 pip install -e .
 ```
-or run directly in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/StanislasStrasman/Noise_Schedule_for_Score-based_Generative_Models/blob/main/illustrated_example.ipynb)
-
-
-## Overview
-
-| Module | Description |
-|---------|-------------|
-| `diffusion.py` | Implements forward diffusion SDEs and associated training losses. |
-| `functions.py` | Utility functions for training, evaluation, and visualization. |
-| `synthetic_data.py` | Synthetic datasets (e.g., Gaussian mixtures, Funnel). |
-| `sampler.py` | Numerical samplers for score-based generative models. |
-| `decoder.py` | Neural decoder architectures. |
-| `upperbounds.py` | Analytical upper bounds and Gaussian approximations. |
-
-## Reproducing results
-
-An illustrated example is given in `examples/illustrated_example.ipynb`.
-You can open it locally or directly in Colab. It provides a complete walkthrough of the setup, training, and analysis of minimal examples. All scripts rely on the noise_diff package defined in src/.
+An illustrated example is given in `examples/illustrated_example.ipynb`. It provides a complete walkthrough of the setup, training and analysis of synthetic data examples. All scripts rely on the noise_diff package defined in src/. You can open it locally or directly [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/StanislasStrasman/Noise_Schedule_for_Score-based_Generative_Models/blob/main/examples/illustrated_example.ipynb)
 
 A version of this repository including the **example on a real dataset** using **pre-trained diffusion models** from  
 ```bibtex
@@ -56,9 +39,23 @@ A version of this repository including the **example on a real dataset** using *
 ```
 will be added **soon**.  
 
+
+## Overview
+
+| Module | Description |
+|---------|-------------|
+| `diffusion.py` | Implements forward diffusion SDEs and associated training losses. |
+| `functions.py` | Utility functions for training, evaluation, and visualization. |
+| `synthetic_data.py` | Synthetic datasets (e.g., Gaussian mixtures, Funnel). |
+| `sampler.py` | Numerical samplers for score-based generative models. |
+| `decoder.py` | Neural decoder architectures. |
+| `upperbounds.py` | Analytical upper bounds and Gaussian approximations. |
+
+
 ## Documentation
 
-A short module-level overview and description is provided in `uu` for easy navigation.
+A short module-level overview and description is provided in `short_documentation.ipynb` for easy navigation. For further theoretical context and mathematical derivations, please refer to
+  **Appendix E**](https://arxiv.org/abs/2402.04650) of the paper.
 
 
 ## If you use this code please cite 

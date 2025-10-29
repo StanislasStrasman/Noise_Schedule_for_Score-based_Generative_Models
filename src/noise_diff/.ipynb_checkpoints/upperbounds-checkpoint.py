@@ -61,21 +61,28 @@ def compute_Ct(dataset, sde, t, gaussian = True):
 '''
 Function associated with Proposition D.2.
 '''
-def compute_Lt(dataset, sde, t, gaussian = True):
-    if (gaussian == True):
+
+def compute_Lt(dataset, sde, t, gaussian=True):
+    if gaussian:
         L_0 = dataset.compute_L0()
     else:
         cov = empirical_mean_covar(dataset)[1]
         smallest_eigenvalue = torch.min(torch.abs(torch.linalg.eigvals(cov)))
-        L_0 = 1.0 / smallest_eigenvalue   
-    return np.min([1 / (sde.sigma_infty**2 * (1 - sde.mu(t)**2)), L_0 / sde.mu(t)**2]) - 1 / sde.sigma_infty**2
+        L_0 = 1.0 / smallest_eigenvalue
+
+    v1 = 1.0 / (sde.sigma_infty**2 * (1 - sde.mu(t)**2))
+    v2 = L_0 / (sde.mu(t)**2)
+    return torch.minimum(v1, v2) - (1.0 / sde.sigma_infty**2)
 
 #################################
 ### COMPUTE THE MIXING TIME ERROR
 #################################
 
 def compute_C1(dataset, sde):
-    return torch.tensor([ func.kl(dataset, sde.final), func.w2(dataset, sde.final) ])
+    kl = func.kl(dataset, sde.final)          
+    w2 = func.w2(dataset, sde.final)
+    vals = torch.stack([torch.as_tensor(kl), torch.as_tensor(w2)])
+    return vals.to(device=sde.device, dtype=torch.get_default_dtype())
 
 #KL UPPER BOUND MIXING
 def compute_E1(dataset,sde):
@@ -150,17 +157,17 @@ def compute_ellbar(dataset, training_sample, sde, num_steps, gauss = True):
         M = (sde.beta(tkp1)/(2*sde.sigma_infty**2))*sde.mu(tk)
         kappa_2_over = norm_mu  * M*torch.abs(sde.mu(tk)*sde.mu(tkp1)*(lambda_min -sde.sigma_infty**2 ) - sde.sigma_infty**2)
         kappa_2 = kappa_2_over / k_1_under
-        hist.append( np.max([kappa_1,kappa_2]))                                                               
-    return np.max(hist)
+        hist.append(torch.max(kappa_1, kappa_2))                                            
+    return torch.stack(hist).max()
     
 #COMPLETE W2 BOUND 
 def compute_w2_bound(dataset, training_sample, sde, num_steps, epsilon, gauss = True):
     #constants computation
     h = 1/num_steps
     T = sde.final_time
-    B = np.sqrt(func.L2_norm_estimator(training_sample)**2 + sde.sigma_infty**2 * sde.d)
+    B = torch.sqrt(func.L2_norm_estimator(training_sample)**2 + sde.sigma_infty**2 * sde.d)
     beta_final = sde.beta(torch.tensor(sde.final_time))
-    M_2 = np.sqrt(2*h* beta_final)/sde.sigma_infty + h*beta_final/(2* sde.sigma_infty**2)
+    M_2 = torch.sqrt(2*h* beta_final)/sde.sigma_infty + h*beta_final/(2* sde.sigma_infty**2)
 
     if gauss == True: #to evaluate the upper bound when the target distribution is Gaussian
         ellbar = compute_ellbar(dataset, training_sample, sde, num_steps, gauss)

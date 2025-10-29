@@ -25,14 +25,8 @@ cd Noise_Schedule_for_Score-based_Generative_Models
 pip install -r requirements.txt
 pip install -e .
 ```
-or run directly in Colab:
+or run directly in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/StanislasStrasman/Noise_Schedule_for_Score-based_Generative_Models/blob/main/illustrated_example.ipynb)
 
-```bash
-!git clone https://github.com/StanislasStrasman/Noise_Schedule_for_Score-based_Generative_Models.git
-%cd Noise_Schedule_for_Score-based_Generative_Models
-!pip install -r requirements.txt
-!pip install -e .
-```
 
 ## Overview
 
